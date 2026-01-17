@@ -4600,35 +4600,67 @@
         );
         // if (el3) el3.remove();
 
-        const el7 = document.querySelector(
+
+
+        const target = document.querySelector(
             '.rsvp-form-container > div > div'
         );
-        // wrapper chứa 2 ảnh
+        if (!target) return;
+
+        // wrapper chứa 2 block
         const wrapper = document.createElement("div");
         wrapper.style.display = "flex";
         wrapper.style.justifyContent = "center";
-        wrapper.style.gap = "16px"; // khoảng cách giữa 2 ảnh
+        wrapper.style.gap = "24px";
         wrapper.style.width = "100%";
 
-        // ảnh 1
-        const img1 = document.createElement("img");
-        img1.src =
-            "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr.png?raw=true";
-        img1.style.width = "48%";
-        img1.style.display = "block";
+        const createItem = (imgUrl, nameText) => {
+            const item = document.createElement("div");
+            item.style.display = "flex";
+            item.style.flexDirection = "column";
+            item.style.alignItems = "center";
+            item.style.width = "48%";
 
-        // ảnh 2
-        const img2 = document.createElement("img");
-        img2.src =
-            "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr.png?raw=true";
-        img2.style.width = "48%";
-        img2.style.display = "block";
+            const img = document.createElement("img");
+            img.src = imgUrl;
+            img.style.width = "100%";
+            img.style.display = "block";
+            img.style.borderRadius = "8px";
 
-        wrapper.appendChild(img1);
-        wrapper.appendChild(img2);
+            const textWrap = document.createElement("div");
+            textWrap.style.marginTop = "12px";
+            textWrap.style.fontFamily = "Signora";
+            textWrap.style.fontSize = "18.624px";
+            textWrap.style.fontWeight = "500";
+            textWrap.style.textAlign = "center";
+            textWrap.style.lineHeight = "1.59";
+            textWrap.style.color = "rgb(0,0,0)";
+            textWrap.style.pointerEvents = "none";
 
-        // thay div cũ bằng wrapper mới
-        el7.replaceWith(wrapper);
+            textWrap.textContent = nameText;
+
+            item.appendChild(img);
+            item.appendChild(textWrap);
+            return item;
+        };
+
+        const left = createItem(
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true",
+            "Bích Phượng"
+        );
+
+        const right = createItem(
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true",
+            "Quang Trường"
+        );
+
+        wrapper.appendChild(left);
+        wrapper.appendChild(right);
+
+        // thay toàn bộ div cũ
+        target.replaceWith(wrapper);
+
+
 
         const el4 = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(29)'
