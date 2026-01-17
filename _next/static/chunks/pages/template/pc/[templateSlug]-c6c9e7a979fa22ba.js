@@ -300,11 +300,7 @@
                     })
                 }), (0, S.jsxs)("div", {
                     className: "fixed top-2 left-2 z-50",
-                    children: [!P && !h && (0, S.jsx)(y.Ay, {
-                        onClick: function () {
-                            return s.push("/editor-template/".concat(n))
-                        }, children: "Chỉnh sửa mẫu n\xe0y"
-                    }), !P && h && (0, S.jsx)(y.Ay, {
+                    children: [!P && h && (0, S.jsx)(y.Ay, {
                         onClick: function () {
                             var e = t.templateName || "Mẫu ".concat(t.id);
                             s.push({pathname: "/thiep-tron-goi", query: {templateId: t.id, templateName: e}})
@@ -312,7 +308,7 @@
                         type: "primary",
                         className: "bg-gradient-to-r from-pink-500 to-purple-600 border-0 hover:from-pink-600 hover:to-purple-700",
                         children: "Đặt thiệp n\xe0y"
-                    }), !P && (0, S.jsx)(O.A, {templateId: n, isBlock: !0, size: "medium"})]
+                    })]
                 })]
             })
         }
