@@ -4801,6 +4801,38 @@
         );
         iframe.src =
             "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3727.1423216152994!2d106.64759407525324!3d20.90659298071239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjDCsDU0JzIzLjciTiAxMDbCsDM5JzAwLjYiRQ!5e0!3m2!1svi!2s!4v1768660536365!5m2!1svi!2s";
+
+        const base =
+            "#root-page-container > div:nth-child(1) > div > div:nth-child(43) > div > div > div > div";
+
+        const day1 = document.querySelector(base + " > div:nth-child(1)");
+        const day20 = document.querySelector(base + " > div:nth-child(20)");
+
+        if (!day1 || !day20) return;
+
+        // Lấy tim ở ngày 20
+        const heart = day20.querySelector("img.heart-date");
+        if (!heart) return;
+
+        // Xoá tim khỏi ngày 20
+        heart.remove();
+
+        // Thêm tim vào ngày 1
+        day1.prepend(heart);
+
+        // === PHẦN BỔ SUNG ===
+
+        // Thêm class colorF cho ngày 1
+        const day1Number = day1.querySelector("div");
+        if (day1Number) {
+            day1Number.classList.add("colorF");
+        }
+
+        // Xoá class colorF ở ngày 20
+        const day20Number = day20.querySelector(".colorF");
+        if (day20Number) {
+            day20Number.classList.remove("colorF");
+        }
     });
 </script>
 </body>
