@@ -52,7 +52,7 @@
         gtag('config', 'G-24WP7GNL8X');
     </script>
     <script>
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             var element = document.getElementById('jsx-2074202128');
             if (element) {
                 element.remove();
@@ -4541,5 +4541,19 @@
     "gssp": true,
     "scriptLoader": []
 }</script>
+<script>
+    const observer = new MutationObserver(() => {
+        const el = document.querySelector("#jsx-2074202128");
+        if (el) {
+            el.removeAttribute("id");
+            observer.disconnect();
+        }
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+</script>
 </body>
 </html>

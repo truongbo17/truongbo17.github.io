@@ -431,40 +431,7 @@
                 }), R = (0, l.PV)(n, X.fu.GIFTS), G = (0, l.PV)(n, X.fu.LIKES), F = (0, l.PV)(n, X.fu.QR_CODE),
                 B = (null == r ? void 0 : r.qrBankAccounts) || [];
             return (0, u.jsxs)(u.Fragment, {
-                children: [(0, u.jsxs)("div", {
-                    className: a().dynamic([["807274309", [P.src, C.src]]]) + " ",
-                    children: [R && (0, u.jsxs)("div", {
-                        id: "animation-gift-preview-btn",
-                        onClick: function () {
-                            S(L), I(), _()
-                        },
-                        className: a().dynamic([["807274309", [P.src, C.src]]]),
-                        children: [(0, u.jsx)("img", {
-                            src: E,
-                            className: a().dynamic([["807274309", [P.src, C.src]]])
-                        }), (0, u.jsx)("span", {
-                            className: a().dynamic([["807274309", [P.src, C.src]]]),
-                            children: "Bắn tim"
-                        })]
-                    }), (R || F && B.length > 0) && (0, u.jsx)("div", {
-                        id: "cinelove-gift-button",
-                        onClick: I,
-                        className: a().dynamic([["807274309", [P.src, C.src]]])
-                    }), G && (0, u.jsx)("div", {
-                        id: "cinelove-like-button",
-                        onClick: O,
-                        className: a().dynamic([["807274309", [P.src, C.src]]]) + " " + "like-button ".concat(x ? "shake" : ""),
-                        children: m > 0 && (0, u.jsx)("div", {
-                            id: "cinelove-like-count",
-                            className: a().dynamic([["807274309", [P.src, C.src]]]),
-                            children: m >= 1e3 ? "999+" : m.toString()
-                        })
-                    })]
-                }), (0, u.jsx)(a(), {
-                    id: "807274309",
-                    dynamic: [P.src, C.src],
-                    children: [".{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;gap:10px;}", '#cinelove-gift-button{background-image:url("'.concat(P.src, '");background-size:100%;background-repeat:no-repeat;-webkit-animation:6s ease 0s infinite normal none running bounceGift;animation:6s ease 0s infinite normal none running bounceGift;width:39px;height:39px;cursor:pointer;}'), '#cinelove-like-button{background-image:url("'.concat(C.src, '");background-repeat:no-repeat;background-size:100%;width:39px;height:39px;position:relative;cursor:pointer;}'), "#cinelove-like-count{opacity:1;border-radius:17px;width:17px;height:17px;line-height:17px;color:white;font-size:8px;position:absolute;right:-4px;top:-4px;background:-webkit-linear-gradient(#ff9aa6,#ff4969);text-align:center;}", "@-webkit-keyframes bounceGift{0%{-webkit-transform:translateY(0px);}8%{-webkit-transform:translateY(-10px);}13%{-webkit-transform:translateY(0px);}16%{-webkit-transform:translateY(-5px);}19%{-webkit-transform:translateY(0px);}22%{-webkit-transform:translateY(-2px);}25%{-webkit-transform:translateY(0px);}100%{-webkit-transform:translateY(0px);}}", "#animation-gift-preview-btn{background:rgba(0,0,0,0.2);padding:0px 10px;box-sizing:border-box;color:white;border-radius:30px;font-size:14px;height:39px;line-height:39px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;}", "#animation-gift-preview-btn img{height:30px;vertical-align:middle;}", "#animation-gift-preview-btn span{display:inline-block;font-size:13px;margin-left:5px;white-space:nowrap;}", ".shake{-webkit-animation:shake 0.1s 3;}", "@-webkit-keyframes shake{0%{-webkit-transform:scale(1);}30%{-webkit-transform:scale(1.3);}100%{-webkit-transform:scale(1);}}"]
-                })]
+
             })
         }, U = function (e) {
             var t = e.showBottomToolbar, n = e.pageData;
