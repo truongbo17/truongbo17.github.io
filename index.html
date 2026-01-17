@@ -4542,17 +4542,19 @@
     "scriptLoader": []
 }</script>
 <script>
-    const observer = new MutationObserver(() => {
-        const el = document.querySelector("#jsx-2074202128");
-        if (el) {
-            el.removeAttribute("id");
-            observer.disconnect();
-        }
-    });
+    window.addEventListener("load", () => {
+        const el = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(3) > div > div > div > div'
+        );
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
+        if (el) {
+            el.style.backgroundImage =
+                'url("https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true")';
+        }
+        ["blessing-box", "cinelove-toolbar"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        });
     });
 </script>
 </body>
