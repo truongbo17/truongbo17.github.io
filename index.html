@@ -4600,6 +4600,7 @@
         );
         // if (el3) el3.remove();
 
+        // ------------------------------
 
         const target = document.querySelector(
             '.rsvp-form-container > div > div'
@@ -4617,7 +4618,7 @@
             item.style.display = "flex";
             item.style.flexDirection = "column";
             item.style.alignItems = "center";
-            item.style.width = "68%";
+            item.style.width = "100%";
 
             const img = document.createElement("img");
             img.src = imgUrl;
@@ -4657,6 +4658,8 @@
 
         // thay toàn bộ div cũ
         target.replaceWith(wrapper);
+
+        // ------------------------------
 
         const el4 = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(29)'
@@ -4797,7 +4800,7 @@
             "#root-page-container > div:nth-child(1) > div > div.relative > div > div > div > div iframe"
         );
         iframe.src =
-            "https://www.google.com/maps?q=20.8786,106.6763&z=16&output=embed";
+            "https://www.google.com/maps?q=20.906583,106.650167&z=16&output=embed";
     });
 </script>
 </body>
