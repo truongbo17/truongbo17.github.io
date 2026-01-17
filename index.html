@@ -4601,11 +4601,9 @@
         // if (el3) el3.remove();
 
 
-
         const target = document.querySelector(
             '.rsvp-form-container > div > div'
         );
-        if (!target) return;
 
         // wrapper chứa 2 block
         const wrapper = document.createElement("div");
@@ -4619,7 +4617,7 @@
             item.style.display = "flex";
             item.style.flexDirection = "column";
             item.style.alignItems = "center";
-            item.style.width = "48%";
+            item.style.width = "68%";
 
             const img = document.createElement("img");
             img.src = imgUrl;
@@ -4645,13 +4643,13 @@
         };
 
         const left = createItem(
-            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true",
-            "Bích Phượng"
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr1.png?raw=true",
+            "Cô dâu"
         );
 
         const right = createItem(
-            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true",
-            "Quang Trường"
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr.png?raw=true",
+            "Chú rể"
         );
 
         wrapper.appendChild(left);
@@ -4659,8 +4657,6 @@
 
         // thay toàn bộ div cũ
         target.replaceWith(wrapper);
-
-
 
         const el4 = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(29)'
@@ -4688,6 +4684,100 @@
 
         if (el5) el5.textContent = "Bích Phượng";
         if (el6) el6.textContent = "Quang Trường";
+
+        const targets = [
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(13) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/1.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(23) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/2.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(24) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/3.png?raw=true"
+            }
+        ];
+
+        targets.forEach(({selector, img}) => {
+            const el = document.querySelector(selector);
+            el.style.backgroundImage = `url("${img}")`;
+            el.style.backgroundSize = "cover";
+            el.style.backgroundPosition = "center";
+            el.style.backgroundRepeat = "no-repeat";
+        });
+
+        const el123 = document.querySelector(
+            "#root-page-container > div:nth-child(1) > div > div:nth-child(20) > div > div > div"
+        );
+        el123.innerHTML = el123.innerHTML.replace(
+            "Trung tâm tiệc cưới Mai Anh",
+            "Tư gia nhà gái"
+        );
+
+        const el122 = document.querySelector(
+            "#root-page-container > div:nth-child(1) > div > div:nth-child(22) > div > div > div"
+        );
+
+        el122.innerHTML = `
+      10h00 - Chủ nhật - Ngày 01/02/2026<br>
+       (Tức ngày 14/12 âm lịch)`;
+
+        const aa999 = [
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(26) > div > div > div",
+                text: "Quang Trường"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(28) > div > div > div",
+                text: "Bích Phượng"
+            }
+        ];
+
+        aa999.forEach(({ selector, text }) => {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.textContent = text;
+            }
+        });
+
+        const items = [
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(29) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/4.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(35) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/5.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(34) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/6.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(39) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/7.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(48) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/8.png?raw=true"
+            },
+            {
+                selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(49) > div > div > div > div",
+                img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/9.png?raw=true"
+            }
+        ];
+
+        items.forEach(({ selector, img }) => {
+            const el = document.querySelector(selector);
+            if (!el) return;
+
+            el.style.backgroundImage = `url("${img}")`;
+            el.style.backgroundSize = "cover";
+            el.style.backgroundPosition = "center";
+            el.style.backgroundRepeat = "no-repeat";
+        });
     });
 </script>
 </body>
