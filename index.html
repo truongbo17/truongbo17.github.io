@@ -4541,120 +4541,211 @@
     "gssp": true,
     "scriptLoader": []
 }</script>
-<script>
-    document.documentElement.style.visibility = "hidden";
-</script>
-
-<div id="__page_loader"
-     style="
-       position:fixed;
-       inset:0;
-       background:#000;
-       color:#fff;
-       display:flex;
-       align-items:center;
-       justify-content:center;
-       z-index:999999;
-       font-family:system-ui,Arial;
-       font-size:14px;
-     ">
-    Loading...
-</div>
-
-<!--<script>-->
-<!--    const root = document.getElementById("root-page-container");-->
-<!--    if (root) {-->
-<!--        root.style.visibility = "hidden";-->
-<!--    }-->
-<!--    window.addEventListener("load", () => {-->
-<!--       -->
-
-<!--        setTimeout(function () {-->
-<!--            document.documentElement.style.visibility = "visible";-->
-<!--            document.getElementById("__page_loader")?.remove();-->
-<!--        }, 1000)-->
-<!--        if (root) {-->
-<!--            root.style.visibility = "visible";-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-
 
 <script>
     (function () {
-        const root = document.getElementById("root-page-container");
-        if (!root) return;
+        // ============================================
+        // BƯỚC 1: ẨN TOÀN BỘ TRANG NGAY TỪ ĐẦU
+        // ============================================
+        const style = document.createElement('style');
+        style.textContent = `
+        html, body, #root-page-container {
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+    `;
+        document.head.appendChild(style);
 
-        // 1️⃣ Ẩn toàn bộ page NGAY LẬP TỨC
-        root.style.visibility = "hidden";
+        // ============================================
+        // BƯỚC 2: ĐỢI DOM + RESOURCES + XỬ LÝ CONTENT
+        // ============================================
+        const initPage = async () => {
+            const root = document.getElementById("root-page-container");
+            if (!root) return;
 
-        // 2️⃣ Chờ DOM + toàn bộ resource (ảnh, iframe, bg)
-        window.addEventListener("load", async () => {
-            const el10 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div'
-            );
+            // Đợi tất cả resources load xong
+            await waitForAllResources();
 
-            const el11 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(5) > div > div > div'
-            );
+            // ============================================
+            // BƯỚC 3: THAY ĐỔI NỘI DUNG
+            // ============================================
 
-            if (el10) el10.textContent = "01";
-            if (el11) el11.textContent = "02";
-
-            const el = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(3) > div > div > div > div'
-            );
-
-            if (el) {
-                el.style.backgroundImage =
-                    'url("https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true")';
-            }
+            // Xóa các phần tử không cần thiết
             ["blessing-box", "cinelove-toolbar"].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.remove();
+                document.getElementById(id)?.remove();
             });
 
-            const el3 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div.jsx-1768321534.rsvp-form-container'
+            // Thay đổi số thứ tự
+            updateText('#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div', "01");
+            updateText('#root-page-container > div:nth-child(1) > div > div:nth-child(5) > div > div > div', "02");
+
+            // Thay background image chính
+            updateBackground(
+                '#root-page-container > div:nth-child(1) > div > div:nth-child(3) > div > div > div > div',
+                'https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true'
             );
-            // if (el3) el3.remove();
 
-            // ------------------------------
+            // Tạo khối QR codes
+            createQRSection();
 
-            const target = document.querySelector(
-                '.rsvp-form-container > div > div'
+            // Xóa phần tử không cần
+            document.querySelector('#root-page-container > div:nth-child(1) > div > div:nth-child(29)')?.remove();
+
+            // Cập nhật tên
+            updateText('#root-page-container > div:nth-child(1) > div > div:nth-child(9) > div > div > div', "Bích Phượng");
+            updateText('#root-page-container > div:nth-child(1) > div > div:nth-child(10) > div > div > div', "Quang Trường");
+
+            // Cập nhật background images gallery
+            const galleryImages = [
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(13) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/1.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(23) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/2.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(24) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/3.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(29) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/4.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(35) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/5.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(34) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/6.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(39) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/7.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(48) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/8.png?raw=true" },
+                { selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(49) > div > div > div > div", img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/9.png?raw=true" }
+            ];
+
+            galleryImages.forEach(({ selector, img }) => updateBackground(selector, img));
+
+            // Cập nhật địa điểm
+            updateHTML(
+                "#root-page-container > div:nth-child(1) > div > div:nth-child(20) > div > div > div",
+                content => content.replace("Trung tâm tiệc cưới Mai Anh", "Tư gia nhà gái")
             );
 
-            // wrapper chứa 2 block
+            // Cập nhật thời gian
+            updateHTML(
+                "#root-page-container > div:nth-child(1) > div > div:nth-child(22) > div > div > div",
+                () => "10h00 - Chủ nhật - Ngày 01/02/2026<br>(Tức ngày 14/12 âm lịch)"
+            );
+
+            updateHTML(
+                "#root-page-container > div:nth-child(1) > div > div:nth-child(44) > div > div > div > p",
+                () => "10h00 Chủ nhật - Ngày 01/02/2026<br>Tức ngày 14/12 âm lịch"
+            );
+
+            // Cập nhật tên cô dâu chú rể
+            updateText("#root-page-container > div:nth-child(1) > div > div:nth-child(26) > div > div > div", "Quang Trường");
+            updateText("#root-page-container > div:nth-child(1) > div > div:nth-child(28) > div > div > div", "Bích Phượng");
+
+            // Cập nhật địa chỉ
+            updateText(
+                "#root-page-container > div:nth-child(1) > div > div:nth-child(47) > div > div > div > p",
+                "TDP Thiên Hương 1, Phường Thiên Hương, TP.Hải Phòng"
+            );
+
+            // Cập nhật Google Maps
+            const iframe = document.querySelector("#root-page-container > div:nth-child(1) > div > div.relative > div > div > div > div iframe");
+            if (iframe) {
+                iframe.src = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3727.1423216152994!2d106.64759407525324!3d20.90659298071239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjDCsDU0JzIzLjciTiAxMDbCsDM5JzAwLjYiRQ!5e0!3m2!1svi!2s!4v1768660536365!5m2!1svi!2s";
+            }
+
+            // Di chuyển trái tim từ ngày 20 sang ngày 1
+            moveHeartToDay1();
+
+            // ============================================
+            // BƯỚC 4: ĐỢI TẤT CẢ ẢNH MỚI LOAD XONG
+            // ============================================
+            await waitForAllResources();
+
+            // ============================================
+            // BƯỚC 5: HIỂN THỊ TRANG
+            // ============================================
+            style.remove();
+            root.style.visibility = "visible";
+            root.style.opacity = "1";
+            document.documentElement.style.visibility = "visible";
+            document.body.style.visibility = "visible";
+            document.getElementById("__page_loader")?.remove();
+        };
+
+        // ============================================
+        // CÁC HÀM HỖ TRỢ
+        // ============================================
+
+        // Đợi tất cả images, iframes, backgrounds load xong
+        function waitForAllResources() {
+            return new Promise(resolve => {
+                if (document.readyState === 'complete') {
+                    checkResources();
+                } else {
+                    window.addEventListener('load', checkResources);
+                }
+
+                function checkResources() {
+                    const images = [...document.images];
+                    const iframes = [...document.querySelectorAll('iframe')];
+
+                    const promises = [
+                        ...images.map(img =>
+                            img.complete
+                                ? Promise.resolve()
+                                : new Promise(res => {
+                                    img.onload = img.onerror = res;
+                                    // Timeout 5s cho mỗi ảnh
+                                    setTimeout(res, 5000);
+                                })
+                        ),
+                        ...iframes.map(frame =>
+                            new Promise(res => {
+                                frame.onload = frame.onerror = res;
+                                setTimeout(res, 5000);
+                            })
+                        )
+                    ];
+
+                    Promise.all(promises).then(() => {
+                        // Đợi thêm 300ms để chắc chắn
+                        setTimeout(resolve, 300);
+                    });
+                }
+            });
+        }
+
+        function updateText(selector, text) {
+            const el = document.querySelector(selector);
+            if (el) el.textContent = text;
+        }
+
+        function updateHTML(selector, transformer) {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.innerHTML = typeof transformer === 'function'
+                    ? transformer(el.innerHTML)
+                    : transformer;
+            }
+        }
+
+        function updateBackground(selector, imageUrl) {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.style.backgroundImage = `url("${imageUrl}")`;
+                el.style.backgroundSize = "cover";
+                el.style.backgroundPosition = "center";
+                el.style.backgroundRepeat = "no-repeat";
+            }
+        }
+
+        function createQRSection() {
+            const target = document.querySelector('.rsvp-form-container > div > div');
+            if (!target) return;
+
             const wrapper = document.createElement("div");
-            wrapper.style.display = "flex";
-            wrapper.style.justifyContent = "center";
-            wrapper.style.gap = "24px";
-            wrapper.style.width = "100%";
+            wrapper.style.cssText = "display:flex;justify-content:center;gap:24px;width:100%";
 
             const createItem = (imgUrl, nameText) => {
                 const item = document.createElement("div");
-                item.style.display = "flex";
-                item.style.flexDirection = "column";
-                item.style.alignItems = "center";
-                item.style.width = "100%";
+                item.style.cssText = "display:flex;flex-direction:column;align-items:center;width:100%";
 
                 const img = document.createElement("img");
                 img.src = imgUrl;
-                img.style.width = "100%";
-                img.style.display = "block";
-                img.style.borderRadius = "8px";
+                img.style.cssText = "width:100%;display:block;border-radius:8px";
 
                 const textWrap = document.createElement("div");
-                textWrap.style.marginTop = "12px";
-                textWrap.style.fontFamily = "Signora";
-                textWrap.style.fontSize = "18.624px";
-                textWrap.style.fontWeight = "500";
-                textWrap.style.textAlign = "center";
-                textWrap.style.lineHeight = "1.59";
-                textWrap.style.color = "rgb(0,0,0)";
-                textWrap.style.pointerEvents = "none";
-
+                textWrap.style.cssText = "margin-top:12px;font-family:Signora;font-size:18.624px;font-weight:500;text-align:center;line-height:1.59;color:rgb(0,0,0);pointer-events:none";
                 textWrap.textContent = nameText;
 
                 item.appendChild(img);
@@ -4662,227 +4753,40 @@
                 return item;
             };
 
-            const left = createItem(
-                "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr1.png?raw=true",
-                "Cô dâu"
-            );
+            wrapper.appendChild(createItem("https://github.com/truongbo17/truongbo17.github.io/blob/main/qr1.png?raw=true", "Cô dâu"));
+            wrapper.appendChild(createItem("https://github.com/truongbo17/truongbo17.github.io/blob/main/qr.png?raw=true", "Chú rể"));
 
-            const right = createItem(
-                "https://github.com/truongbo17/truongbo17.github.io/blob/main/qr.png?raw=true",
-                "Chú rể"
-            );
-
-            wrapper.appendChild(left);
-            wrapper.appendChild(right);
-
-            // thay toàn bộ div cũ
             target.replaceWith(wrapper);
+        }
 
-            // ------------------------------
-
-            const el4 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(29)'
-            );
-            if (el4) el4.remove();
-
-            const el1 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div'
-            );
-
-            const el2 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(5) > div > div > div'
-            );
-
-            if (el1) el1.textContent = "01";
-            if (el2) el2.textContent = "02";
-
-            const el5 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(9) > div > div > div'
-            );
-
-            const el6 = document.querySelector(
-                '#root-page-container > div:nth-child(1) > div > div:nth-child(10) > div > div > div'
-            );
-
-            if (el5) el5.textContent = "Bích Phượng";
-            if (el6) el6.textContent = "Quang Trường";
-
-            const targets = [
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(13) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/1.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(23) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/2.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(24) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/3.png?raw=true"
-                }
-            ];
-
-            targets.forEach(({selector, img}) => {
-                const el = document.querySelector(selector);
-                el.style.backgroundImage = `url("${img}")`;
-                el.style.backgroundSize = "cover";
-                el.style.backgroundPosition = "center";
-                el.style.backgroundRepeat = "no-repeat";
-            });
-
-            const el123 = document.querySelector(
-                "#root-page-container > div:nth-child(1) > div > div:nth-child(20) > div > div > div"
-            );
-            el123.innerHTML = el123.innerHTML.replace(
-                "Trung tâm tiệc cưới Mai Anh",
-                "Tư gia nhà gái"
-            );
-
-            const el122 = document.querySelector(
-                "#root-page-container > div:nth-child(1) > div > div:nth-child(22) > div > div > div"
-            );
-
-            el122.innerHTML = `
-      10h00 - Chủ nhật - Ngày 01/02/2026<br>
-       (Tức ngày 14/12 âm lịch)`;
-
-
-            const el1221 = document.querySelector(
-                "#root-page-container > div:nth-child(1) > div > div:nth-child(44) > div > div > div > p"
-            );
-
-            el1221.innerHTML = `
-      10h00 Chủ nhật - Ngày 01/02/2026<br>
-       Tức ngày 14/12 âm lịch`;
-
-            const aa999 = [
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(26) > div > div > div",
-                    text: "Quang Trường"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(28) > div > div > div",
-                    text: "Bích Phượng"
-                }
-            ];
-
-            aa999.forEach(({ selector, text }) => {
-                const el = document.querySelector(selector);
-                if (el) {
-                    el.textContent = text;
-                }
-            });
-
-            const items = [
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(29) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/4.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(35) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/5.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(34) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/6.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(39) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/7.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(48) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/8.png?raw=true"
-                },
-                {
-                    selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(49) > div > div > div > div",
-                    img: "https://github.com/truongbo17/truongbo17.github.io/blob/main/9.png?raw=true"
-                }
-            ];
-
-            items.forEach(({ selector, img }) => {
-                const el = document.querySelector(selector);
-                if (!el) return;
-
-                el.style.backgroundImage = `url("${img}")`;
-                el.style.backgroundSize = "cover";
-                el.style.backgroundPosition = "center";
-                el.style.backgroundRepeat = "no-repeat";
-            });
-
-            const el444 = document.querySelector(
-                "#root-page-container > div:nth-child(1) > div > div:nth-child(47) > div > div > div > p"
-            );
-            el444.textContent = "TDP Thiên Hương 1, Phường Thiên Hương, TP.Hải Phòng";
-
-            const iframe = document.querySelector(
-                "#root-page-container > div:nth-child(1) > div > div.relative > div > div > div > div iframe"
-            );
-            iframe.src =
-                "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3727.1423216152994!2d106.64759407525324!3d20.90659298071239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjDCsDU0JzIzLjciTiAxMDbCsDM5JzAwLjYiRQ!5e0!3m2!1svi!2s!4v1768660536365!5m2!1svi!2s";
-
-            const base =
-                "#root-page-container > div:nth-child(1) > div > div:nth-child(43) > div > div > div > div";
-
+        function moveHeartToDay1() {
+            const base = "#root-page-container > div:nth-child(1) > div > div:nth-child(43) > div > div > div > div";
             const day1 = document.querySelector(base + " > div:nth-child(1)");
             const day20 = document.querySelector(base + " > div:nth-child(20)");
 
             if (!day1 || !day20) return;
 
-            // Lấy tim ở ngày 20
             const heart = day20.querySelector("img.heart-date");
             if (!heart) return;
 
-            // Xoá tim khỏi ngày 20
             heart.remove();
-
-            // Thêm tim vào ngày 1
             day1.prepend(heart);
 
-            // === PHẦN BỔ SUNG ===
-
-            // Thêm class colorF cho ngày 1
             const day1Number = day1.querySelector("div");
-            if (day1Number) {
-                day1Number.classList.add("colorF");
-            }
+            if (day1Number) day1Number.classList.add("colorF");
 
-            // Xoá class colorF ở ngày 20
             const day20Number = day20.querySelector(".colorF");
-            if (day20Number) {
-                day20Number.classList.remove("colorF");
-            }
+            if (day20Number) day20Number.classList.remove("colorF");
+        }
 
-            // 3️⃣ ĐỢI TẤT CẢ IMG + IFRAME LOAD XONG
-            const waitForResources = () => {
-                const imgs = [...document.images];
-                const iframes = [...document.querySelectorAll("iframe")];
-
-                const promises = [
-                    ...imgs.map(img =>
-                        img.complete
-                            ? Promise.resolve()
-                            : new Promise(res => {
-                                img.onload = img.onerror = res;
-                            })
-                    ),
-                    ...iframes.map(f =>
-                        new Promise(res => {
-                            f.onload = f.onerror = res;
-                        })
-                    )
-                ];
-
-                return Promise.all(promises);
-            };
-
-            await waitForResources();
-
-            // 4️⃣ HIỆN PAGE – LÚC NÀY KHÔNG CÒN DATA CŨ
-            root.style.visibility = "visible";
-            document.documentElement.style.visibility = "visible";
-            document.getElementById("__page_loader")?.remove();
-        });
+        // ============================================
+        // KHỞI CHẠY
+        // ============================================
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPage);
+        } else {
+            initPage();
+        }
     })();
 </script>
 
