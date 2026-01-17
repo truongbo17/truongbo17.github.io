@@ -4562,14 +4562,10 @@
 </div>
 
 <script>
-    window.addEventListener("load", () => {
-        setTimeout(function () {
-            document.documentElement.style.visibility = "visible";
-            document.getElementById("__page_loader")?.remove();
-        }, 1000)
-    });
-</script>
-<script>
+    const root = document.getElementById("root-page-container");
+    if (root) {
+        root.style.visibility = "hidden";
+    }
     window.addEventListener("load", () => {
         const el10 = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div'
@@ -4832,6 +4828,14 @@
         const day20Number = day20.querySelector(".colorF");
         if (day20Number) {
             day20Number.classList.remove("colorF");
+        }
+
+        setTimeout(function () {
+            document.documentElement.style.visibility = "visible";
+            document.getElementById("__page_loader")?.remove();
+        }, 1000)
+        if (root) {
+            root.style.visibility = "visible";
         }
     });
 </script>
