@@ -4571,6 +4571,17 @@
 </script>
 <script>
     window.addEventListener("load", () => {
+        const el10 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div'
+        );
+
+        const el11 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(5) > div > div > div'
+        );
+
+        if (el10) el10.textContent = "01";
+        if (el11) el11.textContent = "02";
+
         const el = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(3) > div > div > div > div'
         );
