@@ -4724,6 +4724,15 @@
       10h00 - Chủ nhật - Ngày 01/02/2026<br>
        (Tức ngày 14/12 âm lịch)`;
 
+
+        const el1221 = document.querySelector(
+            "#root-page-container > div:nth-child(1) > div > div:nth-child(44) > div > div > div > p"
+        );
+
+        el1221.innerHTML = `
+      10h00 Chủ nhật - Ngày 01/02/2026<br>
+       Tức ngày 14/12 âm lịch`;
+
         const aa999 = [
             {
                 selector: "#root-page-container > div:nth-child(1) > div > div:nth-child(26) > div > div > div",
@@ -4778,6 +4787,17 @@
             el.style.backgroundPosition = "center";
             el.style.backgroundRepeat = "no-repeat";
         });
+
+        const el444 = document.querySelector(
+            "#root-page-container > div:nth-child(1) > div > div:nth-child(47) > div > div > div > p"
+        );
+        el444.textContent = "TDP Thiên Hương 1, Phường Thiên Hương, TP.Hải Phòng";
+
+        const iframe = document.querySelector(
+            "#root-page-container > div:nth-child(1) > div > div.relative > div > div > div > div iframe"
+        );
+        iframe.src =
+            "https://www.google.com/maps?q=20.8786,106.6763&z=16&output=embed";
     });
 </script>
 </body>
