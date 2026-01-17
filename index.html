@@ -4542,6 +4542,34 @@
     "scriptLoader": []
 }</script>
 <script>
+    document.documentElement.style.visibility = "hidden";
+</script>
+
+<div id="__page_loader"
+     style="
+       position:fixed;
+       inset:0;
+       background:#000;
+       color:#fff;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       z-index:999999;
+       font-family:system-ui,Arial;
+       font-size:14px;
+     ">
+    Loading...
+</div>
+
+<script>
+    window.addEventListener("load", () => {
+        setTimeout(function () {
+            document.documentElement.style.visibility = "visible";
+            document.getElementById("__page_loader")?.remove();
+        }, 1000)
+    });
+</script>
+<script>
     window.addEventListener("load", () => {
         const el = document.querySelector(
             '#root-page-container > div:nth-child(1) > div > div:nth-child(3) > div > div > div > div'
@@ -4555,6 +4583,68 @@
             const el = document.getElementById(id);
             if (el) el.remove();
         });
+
+        const el3 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div.jsx-1768321534.rsvp-form-container'
+        );
+        // if (el3) el3.remove();
+
+        const el7 = document.querySelector(
+            '.rsvp-form-container > div > div'
+        );
+        // wrapper chứa 2 ảnh
+        const wrapper = document.createElement("div");
+        wrapper.style.display = "flex";
+        wrapper.style.justifyContent = "center";
+        wrapper.style.gap = "16px"; // khoảng cách giữa 2 ảnh
+        wrapper.style.width = "100%";
+
+        // ảnh 1
+        const img1 = document.createElement("img");
+        img1.src =
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true";
+        img1.style.width = "48%";
+        img1.style.display = "block";
+
+        // ảnh 2
+        const img2 = document.createElement("img");
+        img2.src =
+            "https://github.com/truongbo17/truongbo17.github.io/blob/main/cbe1a89d-01d8-4466-bac4-073ab4c25b3e.jpeg?raw=true";
+        img2.style.width = "48%";
+        img2.style.display = "block";
+
+        wrapper.appendChild(img1);
+        wrapper.appendChild(img2);
+
+        // thay div cũ bằng wrapper mới
+        el7.replaceWith(wrapper);
+
+        const el4 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(29)'
+        );
+        if (el4) el4.remove();
+
+        const el1 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(4) > div > div > div'
+        );
+
+        const el2 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(5) > div > div > div'
+        );
+
+        if (el1) el1.textContent = "01";
+        if (el2) el2.textContent = "02";
+
+        const el5 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(9) > div > div > div'
+        );
+
+        const el6 = document.querySelector(
+            '#root-page-container > div:nth-child(1) > div > div:nth-child(10) > div > div > div'
+        );
+
+        if (el5) el5.textContent = "Bích Phượng";
+        if (el6) el6.textContent = "Quang Trường";
     });
 </script>
 </body>
